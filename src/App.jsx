@@ -9,13 +9,15 @@ function App() {
     allPokemonNames: Los nombres de todos los Pokémon
     pokemonData: La información de Pokémon que recibimos de la API
   */
-  const [pokemonName, setPokemonName] = useState(""); // Leer comentario al final del archivo
+  const [pokemonNameSearch, setPokemonNameSearch] = useState(""); // Leer comentario al final del archivo
+  const [pokemonNameSelect, setPokemonNameSelect] = useState(""); 
   const [allPokemonNames, setAllPokemonNames] = useState([]);
   const [pokemonData, setPokemonData] = useState(null);
 
   // COMPLETAR
   const getPokemonData = async () => {
     try {
+		//axios.get()
       /*
       Consultar la API con,
         Endpoint: /pokemon/<pokemonName>
@@ -63,29 +65,29 @@ function App() {
 
   return (
     <>
-      <h1>Consulta PokeApi</h1>
+      <h1>Consulta PokéApi</h1>
 
       <div className='flex row'>
         <form onSubmit={handleFormSubmit} className='flex column'>
           <h3>Escribe el nombre de un Pokémon</h3>
           <input
-            value={pokemonName}
-            onChange={(event) => { setPokemonName(event.target.value) }} />
+            value={pokemonNameSearch}
+            onChange={(event) => { setPokemonNameSearch(event.target.value) }} />
           <p><i>Debe ser completamente en minúscula</i></p>
-          <button type="submit" disabled={pokemonName === ""}>Enviar</button>
+          <button type="submit" disabled={pokemonNameSearch === ""}>Enviar</button>
         </form>
 
         <form onSubmit={handleFormSubmit} className='flex column'>
           <h3>Selecciona un Pokemón</h3>
           <select
-            value={pokemonName}
-            onChange={(event) => { setPokemonName(event.target.value) }}>
+            value={pokemonNameSelect}
+            onChange={(event) => { setPokemonNameSelect(event.target.value) }}>
             <option value="">Selecciona un Pokémon</option>
             {allPokemonNames.map((name, index) => (
               <option key={index} value={name}>{name}</option>
             ))}
           </select>
-          <button type="submit" disabled={pokemonName === ""}>Enviar</button>
+          <button type="submit" disabled={pokemonNameSelect === ""}>Enviar</button>
         </form>
       </div>
 
